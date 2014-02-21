@@ -52,9 +52,15 @@ unless platform?("debian", "ubuntu")
   	autoreconf -i
   	./configure
   	make install
+  	EOH
+  	creates "/usr/local/sbin/fcgiwrap"
+  end
+
+  bash "launch fcgiwrap" do
+  	code <<-EOH
   	spawn-fcgi -u #{node['fcgiwrap']['user']} -g #{node['fcgiwrap']['group']} -M 0775 -s /var/run/nginx/cgiwrap-dispatch.sock -U #{node['fcgiwrap']['user']} -G #{node['fcgiwrap']['group']} /usr/local/sbin/fcgiwrap
   	EOH
-    not_if 'pgrep fcgiwrap'
+  	not_if 'pgrep fcgiwrap'
   end
 end
 
