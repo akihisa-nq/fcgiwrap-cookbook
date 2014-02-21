@@ -21,6 +21,10 @@ node['fcgiwrap']['pkgs'].each do |pkg|
   end
 end
 
+package "spawn-fcgi" do
+	action :install
+end
+
 unless platform?("debian", "ubuntu")
   remote_file "/usr/local/src/fcgiwrap.tar.gz" do
     owner "root"
