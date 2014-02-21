@@ -36,7 +36,7 @@ unless platform?("debian", "ubuntu")
   directory "/var/run/nginx" do
     owner node['fcgiwrap']['user']
     group node['fcgiwrap']['group']
-    mode "0700"
+    mode "0755"
     action :create
   end
 
