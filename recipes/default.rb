@@ -33,6 +33,13 @@ unless platform?("debian", "ubuntu")
     source "https://github.com/gnosek/fcgiwrap/tarball/master"
   end
 
+  directory "/var/run/nginx" do
+    owner node['fcgiwrap']['user']
+    group node['fcgiwrap']['group']
+    mode "0700"
+    action :create
+  end
+
   bash "install fcgiwrap" do
   	user "root"
   	cwd "/usr/local/src"
