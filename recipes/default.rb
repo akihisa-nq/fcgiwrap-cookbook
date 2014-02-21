@@ -43,8 +43,8 @@ unless platform?("debian", "ubuntu")
   	make install
   	spawn-fcgi -u #{node['fcgiwrap']['user']} -g #{node['fcgiwrap']['group']} -M 0775 -s /var/run/nginx/cgiwrap-dispatch.sock -U #{node['fcgiwrap']['user']} -G #{node['fcgiwrap']['group']} /usr/local/sbin/fcgiwrap
   	EOH
+    not_if 'pgrep fcgiwrap'
   end
-  not_if 'pgrep fcgiwrap'
 end
 
 # template "/etc/init.d/fcgiwrap" do
