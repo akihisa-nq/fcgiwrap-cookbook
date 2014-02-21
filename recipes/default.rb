@@ -26,7 +26,7 @@ unless platform?("debian", "ubuntu")
     owner "root"
     group "root"
     mode 00644
-    source "http://github.com/gnosek/fcgiwrap/tarball/master"
+    source "https://github.com/gnosek/fcgiwrap/tarball/master"
   end
 
   bash "install fcgiwrap" do
